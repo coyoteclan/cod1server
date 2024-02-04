@@ -1,0 +1,12 @@
+{
+    "name": "Call of Duty 1 v1.1",
+    "author": "Kazam",
+    "description": "Call of Duty 1.1 server",
+    "docker_image": "",
+    "startup": "./start.sh",
+    "config": {
+        "files": {
+            "myserver.cfg": "myserver.cfg"
+        }
+    }
+}
