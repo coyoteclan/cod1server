@@ -1,12 +1,67 @@
 {
-    "name": "Call of Duty 1 v1.1",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v1",
+        "update_url": null
+    },
+    "exported_at": "2024-02-04T00:00:00+00:00",
+    "name": "Call of Duty 1.1",
     "author": "Kazam",
     "description": "Call of Duty 1.1 server",
-    "docker_image": "cod-server:1.1",
+    "images": [
+        ""
+    ],
+    "file_denylist": [],
     "startup": "./start.sh",
     "config": {
-        "files": {
-            "myserver.cfg": "myserver.cfg"
+        "files": "{}",
+        "startup": "{\n    \"done\": \"AAS initialized\"\n}",
+        "logs": "{}",
+        "stop": "^^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!/bin/bash\n# Install script for Call of Duty 1.1\n\n# Install required packages\napt update -y\napt install -y lib32z1 libc6-i386 wget unzip bzip2\n\n# Download and extract base files\nif [ ! -d /home/container/main ]; then\n    wget -O /home/container/basefiles.zip https://de.dvotx.org/dump/cod1/downloads.php?get=basefiles\n    unzip -o /home/container/basefiles.zip -d /home/container/main\n    rm /home/container/basefiles.zip\nfi\n\n# Download and extract language files\nif [ ! -d /home/container/main ]; then\n    wget -O /home/container/language_en.zip https://de.dvotx.org/dump/cod1/downloads.php?get=english\n    unzip -o /home/container/language_en.zip -d /home/container/main\n    rm /home/container/language_en.zip\nfi\n\n# Download and extract Call of Duty server files\nif [ ! -d /home/container/cod_lnxded-1.1d ]; then\n    wget -O /home/container/cod_lnxded-1.1d.tar.bz2 https://de.dvotx.org/dump/cod1/cod-lnxded-1.1d.tar.bz2\n    tar -xjf /home/container/cod_lnxded-1.1d.tar.bz2 -C /home/container\n    rm /home/container/cod_lnxded-1.1d.tar.bz2\nfi\n\n# Download codextended.so\nif [ ! -f /home/container/codextended.so ]; then\n    wget -O /home/container/codextended.so https://github.com/xtnded/codextended/releases/download/v20/codextended.so\nfi\n\n# Set execute permissions\nchmod +x /home/container/cod_lnxded\n",
+            "container": "ubuntu:latest",
+            "entrypoint": "bash"
         }
-    }
+    },
+    "variables": [
+        {
+            "name": "Max Clients",
+            "description": "The maximum number of clients allowed to connect to the server.",
+            "env_variable": "MAX_CLIENTS",
+            "default_value": "16",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|min:1|max:64"
+        },
+        {
+            "name": "RCON Password",
+            "description": "The RCON password for remote server administration.",
+            "env_variable": "RCON_PASSWORD",
+            "default_value": "password",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|min:1"
+        },
+        {
+            "name": "Net Port",
+            "description": "The port number on which the server listens for connections.",
+            "env_variable": "NET_PORT",
+            "default_value": "28960",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|min:1024|max:65535"
+        },
+        {
+            "name": "FS Game",
+            "description": "The game mod folder to load on the server (e.g., 'main' or 'your_custom_mod').",
+            "env_variable": "FS_GAME",
+            "default_value": "main",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|min:1"
+        }
+    ]
 }
