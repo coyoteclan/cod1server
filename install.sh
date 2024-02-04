@@ -21,6 +21,13 @@ if [ ! -d "cod_lnxded-1.1d" ]; then
     rm cod_lnxded-1.1d.tar.bz2
 fi
 
+# Download myserver.cfg if not already present
+if [ ! -d "main" ]; then
+    wget -O https://de.dvotx.org/dump/cod1/myserver.cfg && \
+    cp ./myserver.cfg ./main && \
+    rm ./myserver.cfg
+fi
+
 # Download codextended.so if not already present
 if [ ! -f "codextended.so" ]; then
     wget -O codextended.so https://github.com/xtnded/codextended/releases/download/v20/codextended.so
