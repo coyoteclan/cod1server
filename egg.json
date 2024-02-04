@@ -2,7 +2,7 @@
     "name": "Call of Duty 1 v1.1",
     "author": "Kazam",
     "description": "Call of Duty 1.1 server",
-    "docker_image": "",
+    "docker_image": "cod-server:1.1",
     "startup": "./start.sh",
     "config": {
         "files": {
