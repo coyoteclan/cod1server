@@ -23,7 +23,7 @@
     "scripts": {
         "installation": {
             "script": "#!/bin/bash\n# Install script for Call of Duty 1.1\n\n# Install required packages\napt update -y\napt install -y lib32z1 libc6-i386 wget unzip bzip2\n\n# Download and extract base files\nif [ ! -d /home/container/main ]; then\n    wget -O /home/container/basefiles.zip https://de.dvotx.org/dump/cod1/downloads.php?get=basefiles\n    unzip -o /home/container/basefiles.zip -d /home/container/main\n    rm /home/container/basefiles.zip\nfi\n\n# Download and extract language files\nif [ ! -d /home/container/main ]; then\n    wget -O /home/container/language_en.zip https://de.dvotx.org/dump/cod1/downloads.php?get=english\n    unzip -o /home/container/language_en.zip -d /home/container/main\n    rm /home/container/language_en.zip\nfi\nif [ ! -d /home/container/main ]; then\n    wget -O /home/container/myserver.cfg https://de.dvotx.org/dump/cod1/myserver.cfg\n\nfi\n\n# Download and extract Call of Duty server files\nif [ ! -d /home/container/cod_lnxded-1.1d ]; then\n    wget -O /home/container/cod_lnxded-1.1d.tar.bz2 https://de.dvotx.org/dump/cod1/cod-lnxded-1.1d.tar.bz2\n    tar -xjf /home/container/cod_lnxded-1.1d.tar.bz2 -C /home/container\n    rm /home/container/cod_lnxded-1.1d.tar.bz2\nfi\n\n# Download codextended.so\nif [ ! -f /home/container/codextended.so ]; then\n    wget -O /home/container/codextended.so https://github.com/xtnded/codextended/releases/download/v20/codextended.so\nfi\n\n# Set execute permissions\nchmod +x /home/container/cod_lnxded\n",
-            "container": "ubuntu:latest",
+            "container": "ghcr.io\/pterodactyl\/installers:debian",
             "entrypoint": "bash"
         }
     },
@@ -35,7 +35,8 @@
             "default_value": "16",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|numeric|min:1|max:64"
+            "rules": "required|numeric|min:1|max:64",
+            "field_type": "text"
         },
         {
             "name": "RCON Password",
@@ -45,6 +46,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|min:1"
+            "field_type": "text"
         },
         {
             "name": "Net Port",
@@ -54,6 +56,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric|min:1024|max:65535"
+            "field_type": "text"
         },
         {
             "name": "FS Game",
@@ -63,6 +66,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|min:1"
+            "field_type": "text"
         }
     ]
 }
