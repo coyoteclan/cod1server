@@ -1,18 +1,19 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
     "meta": {
-        "version": "PTDL_v1",
+        "version": "PTDL_v2",
         "update_url": null
     },
     "exported_at": "2024-02-04T00:00:00+00:00",
     "name": "Call of Duty 1.1",
     "author": "Kazam",
     "description": "Call of Duty 1.1 server",
-    "images": [
+    "features": [],
+    "docker_images": [
         ""
     ],
     "file_denylist": [],
-    "startup": "./start.sh",
+    "startup": "LD_PRELOAD="./codextended.so" ./cod_lnxded +exec myserver.cfg +set dedicated 2 +set ttycon 0 +set sv_maxclients $MAX_CLIENTS +set rcon_password $RCON_PASSWORD +set net_ip 0.0.0.0 +set net_port $NET_PORT +set sv_punkbuster 0 +set fs_basepath . +set fs_homepath . +set fs_game $FS_GAME +map_rotate",
     "config": {
         "files": "{}",
         "startup": "{\n    \"done\": \"AAS initialized\"\n}",
