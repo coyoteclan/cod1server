@@ -3,15 +3,11 @@
 # Download and extract base files if not already present
 if [ ! -d "main" ]; then
     wget -O basefiles.zip https://de.dvotx.org/dump/cod1/downloads.php?get=basefiles && \
-    unzip basefiles.zip -d main && \
-    rm basefiles.zip
-fi
-
-# Download and extract language files if not already present
-if [ ! -d "main" ]; then
     wget -O language_en.zip https://de.dvotx.org/dump/cod1/downloads.php?get=english && \
+    unzip basefiles.zip -d main && \
     unzip language_en.zip -d main && \
-    rm language_en.zip
+    rm language_en.zip && \
+    rm basefiles.zip
 fi
 
 # Download and extract Call of Duty server files if not already present
