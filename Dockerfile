@@ -7,6 +7,8 @@ RUN dpkg --add-architecture i386 && \
     libc6-i386 \
     wget \
     unzip \
+    g++-multilib \
+    libstdc++6:i386 \
     bzip2
 
 RUN wget https://raw.githubusercontent.com/coyoteclan/cod1server/main/install.sh
@@ -16,7 +18,3 @@ WORKDIR /home/container
 COPY install.sh /home/container
 
 RUN cd /home/container && chmod +x install.sh && bash install.sh
-
-#COPY ./main /home/container/main
-#COPY ./cod_lnxded-1.1d /home/container/cod_lnxded-1.1d
-#COPY ./codextended.so /home/container
