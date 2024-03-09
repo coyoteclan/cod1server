@@ -9,6 +9,7 @@ RUN dpkg --add-architecture i386 && \
     unzip \
     g++-multilib \
     libstdc++6:i386 \
+    libsqlite3-dev:i386 \
     bzip2
 
 RUN wget https://raw.githubusercontent.com/coyoteclan/cod1server/main/install.sh
