@@ -25,8 +25,8 @@ if [ ! -d "main" ]; then
 fi
 
 # Download codextended.so if not already present
-if [ ! -f "codextended.so" ]; then
-    wget -O codextended.so https://github.com/xtnded/codextended/releases/download/v20/codextended.so
+if [ ! -f "libcod1_1_1.so" ]; then
+    wget https://github.com/codbridge/libcod1/archive/refs/heads/main.zip
 fi
 
 # Set execute permissions for Call of Duty server binary
